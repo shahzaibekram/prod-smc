@@ -1,0 +1,58 @@
+[
+    {
+        "name": "PBA_MetaInfo",
+        "policy": "OR('snblMSP.member','bopMSP.member','bokMSP.member','ablMSP.member','alfhpkkaMSP.member','hblMSP.member','fblMSP.member')",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 2,
+        "blockToLive": 0,
+        "memberOnlyRead": true
+    },
+    {
+        "name": "PBA_DataStore",
+        "policy": "OR('snblMSP.member','bopMSP.member','bokMSP.member','ablMSP.member','alfhpkkaMSP.member','hblMSP.member','fblMSP.member')",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 2,
+        "blockToLive": 0,
+        "memberOnlyRead": true
+    },
+    {
+        "name": "PBA_LegacyDataStore",
+        "policy": "OR('snblMSP.member','bopMSP.member','bokMSP.member','ablMSP.member','alfhpkkaMSP.member','hblMSP.member','fblMSP.member')",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 2,
+        "blockToLive": 0,
+        "memberOnlyRead": true
+    },
+    {
+        "name": "pba",
+        "policy": "OR('snblMSP.member','bopMSP.member','bokMSP.member','ablMSP.member','alfhpkkaMSP.member','hblMSP.member','fblMSP.member')",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 2,
+        "blockToLive": 0,
+        "memberOnlyRead": true
+    },
+    {
+        "name": "accessList",
+        "policy": "OR('snblMSP.member','bopMSP.member','bokMSP.member','ablMSP.member','alfhpkkaMSP.member','hblMSP.member','fblMSP.member')",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 2,
+        "blockToLive": 0,
+        "memberOnlyRead": true
+    },
+    {
+        "name": "consent_history",
+        "policy": "OR('snblMSP.member','bopMSP.member','bokMSP.member','ablMSP.member','alfhpkkaMSP.member','hblMSP.member','fblMSP.member')",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 2,
+        "blockToLive": 0,
+        "memberOnlyRead": true
+    },
+    {
+        "name": "relationship",
+        "policy": "OR('snblMSP.member','bopMSP.member','bokMSP.member','ablMSP.member','alfhpkkaMSP.member','hblMSP.member','fblMSP.member')",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 2,
+        "blockToLive": 0,
+        "memberOnlyRead": true
+    }
+]

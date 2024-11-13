@@ -1,0 +1,31 @@
+peer lifecycle chaincode install pba.tar.gz
+#above will give you the package id, export it.
+
+latest prod:
+export CC_PACKAGE_ID=pba_ekyc:c84f9d68658b9c76d0bdeb39137d4be6327662ae776a8ab7c51b64314e687887
+
+#export
+export ORDERER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto-config/ordererOrganizations/pba.nationalekyc.pk/orderers/orderer0.pba.nationalekyc.pk/msp/tlsintermediatecerts/tlsca.pba.pk-cert.pem
+
+export ORDERER_CA=/go/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/pba.nationalekyc.pk/orderers/orderer0.pba.nationalekyc.pk/msp/tlsintermediatecerts/tlsca.pba.pk-cert.pem
+
+peer lifecycle chaincode queryinstalled
+peer lifecycle chaincode querycommitted --channelID nationalekycchannel 
+
+peer lifecycle chaincode querycommitted --channelID pbachannel
+
+peer lifecycle chaincode querycommitted --channelID relayekycchannel
+
+peer lifecycle chaincode install
+
+#Approve:
+
+peer lifecycle chaincode approveformyorg --channelID nationalekycchannel --name pba_ekyc --version 6 --init-required --package-id $CC_PACKAGE_ID --sequence 6 -o orderer0.pba.nationalekyc.pk:5050 --ordererTLSHostnameOverride orderer0.pba.nationalekyc.pk --tls true --cafile $ORDERER_CA --collections-config ./collections_config.json --signature-policy "OR('snblMSP.member','bopMSP.member','bokMSP.member','ablMSP.member','alfhpkkaMSP.member','hblMSP.member','fblMSP.member')" --waitForEvent
+
+#Commit:
+peer lifecycle chaincode commit -o orderer0.pba.nationalekyc.pk:5050 --ordererTLSHostnameOverride orderer0.pba.nationalekyc.pk --channelID nationalekycchannel --name pba_ekyc  --version 6 --sequence 6 --collections-config ./collections_config.json --signature-policy "OR('snblMSP.member','bopMSP.member','bokMSP.member','ablMSP.member','alfhpkkaMSP.member','hblMSP.member','fblMSP.member')" --init-required --tls true --cafile $ORDERER_CA --peerAddresses peer0.alfhpkka.nationalekyc.pk:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto-config/peerOrganizations/alfhpkka.nationalekyc.pk/peers/peer0.alfhpkka.nationalekyc.pk/tls/ca.crt
+
+#Invoke:
+
+peer chaincode invoke -o orderer0.pba.nationalekyc.pk:5050 --ordererTLSHostnameOverride orderer0.pba.nationalekyc.pk --channelID nationalekycchannel --name pba_ekyc --isInit --tls true --cafile $ORDERER_CA --peerAddresses peer0.alfhpkka.nationalekyc.pk:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto-config/peerOrganizations/alfhpkka.nationalekyc.pk/peers/peer0.alfhpkka.nationalekyc.pk/tls/ca.crt -c '{"Args":["Init","[{\"orgType\":\"ET\",\"MSP\":\"snblMSP.member\"},{\"orgType\":\"ET\",\"MSP\":\"bopMSP.member\"},{\"orgType\":\"ET\",\"MSP\":\"bokMSP.member\"},{\"orgType\":\"ET\",\"MSP\":\"ablMSP.member\"},{\"orgType\":\"ET\",\"MSP\":\"alfhpkkaMSP.member\"},{\"orgType\":\"ET\",\"MSP\":\"hblMSP.member\"},{\"orgType\":\"ET\",\"MSP\":\"fblMSP.member\"}]"]}'
+
